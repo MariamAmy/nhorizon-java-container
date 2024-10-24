@@ -35,7 +35,7 @@ pipeline {
         stage('Run the Image') {
             steps {
                 script {
-                    sh "docker run -d -p 8080:8080 mariamayman/alx-swd1-m2d:latest"
+                    sh "docker run -d -p 9092:8080 mariamayman/alx-swd1-m2d:latest"
                 }
             }
         }
