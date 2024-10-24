@@ -4,7 +4,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("ALX_SWD1_M2d/java-app")
+                    dockerImage = docker.build("alx-swd1-m2d/java-app")
                 }
             }
         }
@@ -20,14 +20,14 @@ pipeline {
         stage('Pull on Another Agent') {
             steps {
                 script {
-                    sh "docker pull ALX_SWD1_M2d/java-app:latest"
+                    sh "docker pull alx-swd1-m2d/java-app:latest"
                 }
             }
         }
         stage('Run the Image') {
             steps {
                 script {
-                    sh "docker run -d -p 8080:8080 ALX_SWD1_M2d/java-app:latest"
+                    sh "docker run -d -p 8080:8080 alx-swd1-m2d/java-app:latest"
                 }
             }
         }
