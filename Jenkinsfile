@@ -4,7 +4,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("alx-swd1-m2d/java-app")
+                    dockerImage = docker.build("mariamayman/alx-swd1-m2d")
                 }
             }
         }
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials') {
-                        dockerImage.push("latest")
+                        dockerImage.push("mariamayman/alx-swd1-m2d:latest")
                     }
                 }
             }
@@ -20,14 +20,14 @@ pipeline {
         stage('Pull on Another Agent') {
             steps {
                 script {
-                    sh "docker pull alx-swd1-m2d/java-app:latest"
+                    sh "docker pull alx-swd1-m2d:latest"
                 }
             }
         }
         stage('Run the Image') {
             steps {
                 script {
-                    sh "docker run -d -p 8080:8080 alx-swd1-m2d/java-app:latest"
+                    sh "docker run -d -p 8080:8080 alx-swd1-m2d:latest"
                 }
             }
         }
