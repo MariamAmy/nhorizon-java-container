@@ -32,10 +32,10 @@ To personalize the project, we made the following modifications:
    - File: `views/home.pug`
    - Added Code:
      ```pug
-     h1 Welcome to Our Group Page!
-     p Group Code: GROUP12345
+     h2 Group Code ( ALX SWD1 M2d )
+     h2 Names ( Mariam Ayman - Assem Mohammed )
      ```
-   This ensures that our group code, `GROUP12345`, is visible when the application is accessed through the browser.
+   This ensures that our group code, `ALX SWD1 M2d `, is visible when the application is accessed through the browser.
 
 ## Jenkins Pipeline
 We created a **Declarative Jenkinsfile** that automates the following stages:
@@ -49,13 +49,14 @@ We created a **Declarative Jenkinsfile** that automates the following stages:
 
 ## Docker Image Deployment
 The Docker image is built from the repository and pushed to the following Docker Hub repository:
-- **Docker Hub URL**: `https://hub.docker.com/r/your-dockerhub-username/nhorizon-java-container`
+- **Docker Hub URL**: `https://hub.docker.com/r/mariamayman/alx-swd1-m2d`
 
 The image can be pulled and run using the following command:
 ```bash
-docker pull your-dockerhub-username/nhorizon-java-container:latest
-docker run -d -p 8080:8080 your-dockerhub-username/nhorizon-java-container:latest
+docker pull docker pull mariamayman/alx-swd1-m2d:latest
+docker run -d -p 1234:9090 mariamayman/alx-swd1-m2d:latest
 ```
+
 ## Challenges Faced
 
 ### Docker Build Issues:
@@ -63,6 +64,9 @@ Initially, we encountered deprecation warnings related to Docker’s legacy buil
 
 ### Docker Push Failures:
 Docker login failed due to incorrect password input. We resolved this by correctly configuring the Jenkins credentials and ensuring Docker login was secure.
+
+### Docker (Port Already allocated) Issue
+After realizing that we used the same port for an already exited container, we stopped and remove the container to make use of the part. In other cases we changed the port number.
 
 ### Connectivity Check Failure:
 The initial pipeline failed the `curl` connectivity check because the container didn’t have enough time to start. We added a 10-second delay using `sleep(10)` to allow the application to initialize properly.
@@ -73,16 +77,16 @@ To test the application locally:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/XP2600-hub/nhorizon-java-container.git
+    git clone https://github.com/MariamAmy/nhorizon-java-container
     ```
 
 2. Build and run the Docker image:
     ```bash
     docker build -t local-nhorizon-java-container .
-    docker run -d -p 8080:8080 local-nhorizon-java-container
+    docker run -d -p 1234:8080 local-nhorizon-java-container
     ```
 
-3. Visit `http://localhost:8080` in your web browser to see the application running with the updated front page showing the group code.
+3. Visit `http://localhost:1234` in your web browser to see the application running with the updated front page showing the group code.
 
 ## Conclusion
 
