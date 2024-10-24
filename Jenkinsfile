@@ -35,14 +35,14 @@ pipeline {
         stage('Run the Image') {
             steps {
                 script {
-                    sh "docker run -d -p 7788:9090 mariamayman/alx-swd1-m2d:latest"
+                    sh "docker run -d -p 1177:9090 mariamayman/alx-swd1-m2d:latest"
                 }
             }
         }
         stage('Check Connectivity') {
             steps {
                 script {
-                    def response = sh(script: "curl --fail http://localhost:7788", returnStdout: true).trim()
+                    def response = sh(script: "curl --fail http://localhost:1177", returnStdout: true)
                     if (response != "200") {
                         error("Website is not accessible!")
                     }
