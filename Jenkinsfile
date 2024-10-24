@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials') {
-                        dockerImage.push("mariamayman/alx-swd1-m2d:latest")
+                        dockerImage.push("latest")
                     }
                 }
             }
