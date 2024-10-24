@@ -1,6 +1,14 @@
 pipeline {
     agent any
     stages {
+	stage('Cleanup') {
+            steps {
+                script {
+                    sh "docker ps -q --filter 'name=alx-swd1-m2d' | xargs -r docker stop"
+                    sh "docker ps -aq --filter 'name=alx-swd1-m2d' | xargs -r docker rm"
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
@@ -27,14 +35,14 @@ pipeline {
         stage('Run the Image') {
             steps {
                 script {
-                    sh "docker run -d -p 9090:8080 mariamayman/alx-swd1-m2d:latest"
+                    sh "docker run -d -p 9091:8080 mariamayman/alx-swd1-m2d:latest"
                 }
             }
         }
         stage('Check Connectivity') {
             steps {
                 script {
-                    def response = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://localhost:9090", returnStdout: true)
+                    def response = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://localhost:9091", returnStdout: true)
                     if (response != "200") {
                         error("Website is not accessible!")
                     }
