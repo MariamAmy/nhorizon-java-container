@@ -20,14 +20,14 @@ pipeline {
         stage('Pull on Another Agent') {
             steps {
                 script {
-                    sh "docker pull alx-swd1-m2d:latest"
+                    sh "docker pull mariamayman/alx-swd1-m2d:latest"
                 }
             }
         }
         stage('Run the Image') {
             steps {
                 script {
-                    sh "docker run -d -p 8080:8080 alx-swd1-m2d:latest"
+                    sh "docker run -d -p 8080:8080 mariamayman/alx-swd1-m2d:latest"
                 }
             }
         }
