@@ -42,7 +42,7 @@ pipeline {
         stage('Check Connectivity') {
             steps {
                 script {
-                    def response = sh(script: "curl -w '%{http_code}' http://localhost:7770", returnStdout: true).trim()
+                    def response = sh(script: "curl --fail http://localhost:7770", returnStdout: true).trim()
                     if (response != "200") {
                         error("Website is not accessible!")
                     }
